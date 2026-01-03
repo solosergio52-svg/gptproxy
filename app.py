@@ -1,5 +1,6 @@
 from flask import Flask, Response, request
 import requests
+import os
 
 app = Flask(__name__)
 
@@ -30,3 +31,9 @@ def index():
       </body>
     </html>
     """
+
+if __name__ == "__main__":
+    # Render даёт порт через переменную окружения PORT
+    port = int(os.environ.get("PORT", 5000))
+    # слушаем на всех интерфейсах (обязательно для Render)
+    app.run(host="0.0.0.0", port=port)
